@@ -46,3 +46,13 @@ services:
     volumes:
       - /var/docker/my-test-data:/var/www/data
       # on windows e.g.: d:/docker/data:/var/www/data
+      
+# Samba #######################################################################
+  samba-container:
+    image: dperson/samba
+    ports:
+      - 139:139
+      - 445:445
+    volumes:
+      - /var/docker/my-test-data:/smb_shared
+    command: ["-u","son;son","-s","smb_shared;/smb_shared;yes;no;yes;all;son;son;comment"]
